@@ -45,7 +45,7 @@ public class Alter extends JFrame implements MouseListener{
 		jtf2.setText(activity.getThreader().getExamDater().getYear()+"");
 		jtf3.setText(activity.getThreader().getExamDater().getMonth()+"");
 		jtf4.setText(activity.getThreader().getExamDater().getDay()+"");
-		jtf5.setText(activity.getThreader().getExamDater().getHours()+"");
+		jtf5.setText(activity.getThreader().getExamDater().getHours()+1+"");
 		jl1 = new JLabel("目标事件");
 		jl2 = new JLabel("目标年");
 		jl3 = new JLabel("目标月");
