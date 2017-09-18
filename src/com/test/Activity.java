@@ -1,19 +1,9 @@
 package com.test;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dialog.ModalityType;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.annotation.processing.Completion;
-import javax.swing.*;
 
 public class Activity extends JWindow implements MouseListener{
 
@@ -22,10 +12,20 @@ public class Activity extends JWindow implements MouseListener{
 	JPanel jp;
 	JTextField jtf1,jtf2;
 	JButton jb1;
-	
+	private Threader threader;
+
+	public Threader getThreader() {
+		return threader;
+	}
+
+	public void setThreader(Threader threader) {
+		this.threader = threader;
+	}
+
 	//构造方法
-	public Activity(){
-		
+	public Activity(Threader threader){
+		this.threader = threader;
+
 		//初始化位置
 		int[] XY = new int[2];
 		XY = Modal.XYIn();
@@ -33,7 +33,7 @@ public class Activity extends JWindow implements MouseListener{
 		Y = XY[1];
 		
 		//实例化组件
-		jtf1 = new JTextField("距离软考");
+		jtf1 = new JTextField("距离");
 		jp = new JPanel();
 		jtf2 = new JTextField("0天0时0分0秒");
 		jb1 = new JButton("X");
@@ -62,7 +62,7 @@ public class Activity extends JWindow implements MouseListener{
 		this.add(jp);
 		
 		//设置窗体
-//		this.setTitle("软考倒计时器");
+//		this.setTitle("倒计时器");
 		this.setLayout(null);
 		this.setVisible(true);
 		this.setLocation(X, Y);
@@ -71,7 +71,10 @@ public class Activity extends JWindow implements MouseListener{
 		
 		
 	}
-	
+
+	public void reLoad(){
+		this.threader.loadDate();
+	}
 
 	//设置背景图片
 	public static void setBackImage(JFrame frame, ImageIcon icon, boolean isAutoSize){
@@ -101,7 +104,7 @@ public class Activity extends JWindow implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		if(arg0.getClickCount()==2)
-			new Alter();
+			new Alter(this);
 		if(arg0.getClickCount()==3)
 			System.exit(0);
 			

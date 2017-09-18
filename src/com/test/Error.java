@@ -1,9 +1,7 @@
 package com.test;
 
-import java.awt.*;
-
 import javax.swing.*;
-import java.util.*;
+import java.awt.*;
 
 public class Error extends JDialog{
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/com/test/Activity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/test/Alter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/test/Error.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/test/Modal.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/test/Threader.java" charset="GBK" />
   </component>
 </project>

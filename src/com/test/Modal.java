@@ -1,18 +1,13 @@
 package com.test;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 
 public class Modal {
 
 	
-	//mian方法
-	public static void main(String[] args) {
-		new Threader().start();
-	}
-	
-	
+
 	//计算剩余日期方法
 	protected static Dater setDater(Dater examDater,Dater nowDater){
 		Dater dater = new Dater();
@@ -28,11 +23,10 @@ public class Modal {
 					}else if(year==nowDater.getYear() && month==nowDater.getMonth()){
 						if(examDater.getYear() == nowDater.getYear() && examDater.getMonth() == nowDater.getMonth()){
 							if(examDater.getDay() > nowDater.getDay()){
-								if(examDater.getHours()>nowDater.getHours()){
-									t  = examDater.getDay()-nowDater.getDay();
-									
-								}else{
+								if(examDater.getHours()<nowDater.getHours()){
 									t  = examDater.getDay()-nowDater.getDay()-1;
+								}else{
+									t  = examDater.getDay()-nowDater.getDay();
 								}
 							}else{
 							}
@@ -295,7 +289,7 @@ public class Modal {
 		
 	//储存目标事件
 	protected static void eventOut(String event) {
-		event = new String("距离"+event);
+		event = new String(event);
 		try {
 			FileOutputStream out = new FileOutputStream("event.txt");
 			out.write(event.getBytes());

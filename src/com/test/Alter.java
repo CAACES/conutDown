@@ -15,16 +15,19 @@ public class Alter extends JFrame implements MouseListener{
 	JButton jb1,jb2;
 	int w=10;
 	int X,Y;
-	
+	private Activity activity;
+
 	//构造方法
-	public Alter(){
-		
+	public Alter(Activity activity){
+		this.activity = activity;
+
 		//初始化位置
 		int[] XY = new int[2];
 		XY = Modal.XYIn();
 		X = XY[0]-200;
 		Y = XY[1];
-		
+
+
 		//实例化组件
 		jp1 = new JPanel();
 		jp2 = new JPanel();
@@ -34,6 +37,15 @@ public class Alter extends JFrame implements MouseListener{
 		jtf3 = new JTextField(w);
 		jtf4 = new JTextField(w);
 		jtf5 = new JTextField(w);
+//		String examEvent = activity.getThreader().getExamEvent();
+//		String[] t = new String[2];
+//		t = examEvent.split("距离");
+//		jtf1.setText(t[1]);
+		jtf1.setText(activity.getThreader().getExamEvent());
+		jtf2.setText(activity.getThreader().getExamDater().getYear()+"");
+		jtf3.setText(activity.getThreader().getExamDater().getMonth()+"");
+		jtf4.setText(activity.getThreader().getExamDater().getDay()+"");
+		jtf5.setText(activity.getThreader().getExamDater().getHours()+"");
 		jl1 = new JLabel("目标事件");
 		jl2 = new JLabel("目标年");
 		jl3 = new JLabel("目标月");
@@ -122,6 +134,8 @@ public class Alter extends JFrame implements MouseListener{
 				Modal.examDateOut(examDate);
 				//存入事件
 				Modal.eventOut(jtf1.getText());
+				//重新加载时间
+				activity.reLoad();
 				this.dispose();
 			}else{
 				//数据不正确，弹窗提示
