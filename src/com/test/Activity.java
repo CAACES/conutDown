@@ -13,6 +13,7 @@ public class Activity extends JWindow implements MouseListener{
 	JTextField jtf1,jtf2;
 	JButton jb1;
 	private Threader threader;
+	Alter alter;
 
 	public Threader getThreader() {
 		return threader;
@@ -103,7 +104,7 @@ public class Activity extends JWindow implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if(arg0.getClickCount()==2)
+		if(arg0.getClickCount()==2 && this.alter == null)
 			new Alter(this);
 		if(arg0.getClickCount()==3)
 			System.exit(0);

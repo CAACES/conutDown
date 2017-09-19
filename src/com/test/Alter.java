@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Date;
 
 public class Alter extends JFrame implements MouseListener{
 
@@ -20,12 +22,13 @@ public class Alter extends JFrame implements MouseListener{
 	//构造方法
 	public Alter(Activity activity){
 		this.activity = activity;
+		this.activity.alter = this;
 
 		//初始化位置
 		int[] XY = new int[2];
 		XY = Modal.XYIn();
-		X = XY[0]-200;
-		Y = XY[1];
+		X = XY[0]+25;
+		Y = XY[1]+90;
 
 
 		//实例化组件
@@ -90,7 +93,12 @@ public class Alter extends JFrame implements MouseListener{
 		this.add(jp1,BorderLayout.CENTER);
 		this.add(jp3,BorderLayout.SOUTH);
 		this.add(jp2,BorderLayout.NORTH);
-		
+		this.addWindowListener(new WindowAdapter() {		//窗口事件监听
+			public void windowClosing(WindowEvent e) {	//窗口关闭
+				close();
+			}
+		});
+
 		//设置布局
 		
 		//设置窗体
@@ -136,7 +144,7 @@ public class Alter extends JFrame implements MouseListener{
 				Modal.eventOut(jtf1.getText());
 				//重新加载时间
 				activity.reLoad();
-				this.dispose();
+				close();
 			}else{
 				//数据不正确，弹窗提示
 				new Error(this, "错误", true, null);
@@ -145,8 +153,13 @@ public class Alter extends JFrame implements MouseListener{
 		
 		
 		if(arg0.getSource()==jb2){
-			this.dispose();
+			close();
 		}
+	}
+
+	private void close(){
+		this.activity.alter = null;		//防止输入时间窗口多次打开
+		this.dispose();
 	}
 
 	@Override
