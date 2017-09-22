@@ -36,6 +36,7 @@ public class Activity extends JWindow implements MouseListener{
 		//实例化组件
 		jtf1 = new JTextField("距离");
 		jp = new JPanel();
+//		jp = new ImagePanel(new Image);
 		jtf2 = new JTextField("0天0时0分0秒");
 		jb1 = new JButton("X");
 		
@@ -56,6 +57,8 @@ public class Activity extends JWindow implements MouseListener{
 		jp.addMouseListener(this);
 		jtf1.addMouseListener(this);
 		jtf2.addMouseListener(this);
+		//设置背景
+
 		
 		//添加组价
 		this.add(jtf2);
@@ -63,7 +66,7 @@ public class Activity extends JWindow implements MouseListener{
 		this.add(jp);
 		
 		//设置窗体
-//		this.setTitle("倒计时器");
+//		setBackImage(this, new ImageIcon("Tesla_Flag.jpg", null), true);
 		this.setLayout(null);
 		this.setVisible(true);
 		this.setLocation(X, Y);
@@ -73,33 +76,13 @@ public class Activity extends JWindow implements MouseListener{
 		
 	}
 
+	//重新加载目标数据
 	public void reLoad(){
 		this.threader.loadDate();
 	}
 
-	//设置背景图片
-	public static void setBackImage(JFrame frame, ImageIcon icon, boolean isAutoSize){
-		if(frame==null || icon==null)return;
-		Container pane = frame.getContentPane();
-		((JPanel)pane).setOpaque(false);
-		JLayeredPane layerp = frame.getLayeredPane();
-		//
-		Component[] coms = layerp.getComponentsInLayer(new Integer(Integer.MIN_VALUE));
-		if(coms.length>0){
-			for(Component com:coms){
-				layerp.remove(com);
-			}
-		}
-		//
-		JLabel lab = new JLabel(icon);
-		if(isAutoSize){
-			icon.setImage(icon.getImage().getScaledInstance(frame.getSize().width,
-					frame.getSize().height, Image.SCALE_SMOOTH));
-		}
-		lab.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
-		layerp.add(lab,new Integer(Integer.MIN_VALUE));
-	}
-	
+
+
 	//
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -109,10 +92,6 @@ public class Activity extends JWindow implements MouseListener{
 		if(arg0.getClickCount()==3)
 			System.exit(0);
 			
-	}
-	
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 	
 	@Override
